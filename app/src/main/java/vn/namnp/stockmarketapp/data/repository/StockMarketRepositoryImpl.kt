@@ -13,8 +13,11 @@ import vn.namnp.stockmarketapp.domain.model.CompanyListing
 import vn.namnp.stockmarketapp.domain.repository.StockMarketRepository
 import vn.namnp.stockmarketapp.util.Resource
 import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class StockMarketRepositoryImpl(
+@Singleton
+class StockMarketRepositoryImpl @Inject constructor(
     private val api: StockMarketApi,
     private val db: StockMarketDatabase,
     private val csvParser: CSVParser<CompanyListing>,

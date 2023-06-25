@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -13,8 +14,10 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import vn.namnp.stockmarketapp.domain.repository.StockMarketRepository
 import vn.namnp.stockmarketapp.util.Resource
+import javax.inject.Inject
 
-class CompanyListViewModel(
+@HiltViewModel
+class CompanyListViewModel @Inject constructor(
     private val stockMarketRepository: StockMarketRepository
 ) : ViewModel() {
 
