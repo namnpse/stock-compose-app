@@ -6,11 +6,13 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import vn.namnp.stockmarketapp.csv.CSVParser
+import vn.namnp.stockmarketapp.csv.IntraDayInfoParser
 import vn.namnp.stockmarketapp.csv.StockMarketCSVParser
 import vn.namnp.stockmarketapp.data.local.StockMarketDatabase
 import vn.namnp.stockmarketapp.data.remote.StockMarketApi
 import vn.namnp.stockmarketapp.data.repository.StockMarketRepositoryImpl
 import vn.namnp.stockmarketapp.domain.model.CompanyListing
+import vn.namnp.stockmarketapp.domain.model.IntraDayInfo
 import vn.namnp.stockmarketapp.domain.repository.StockMarketRepository
 import javax.inject.Singleton
 
@@ -44,4 +46,10 @@ abstract class RepositoryModule {
 //            csvParser = parser,
 //        )
 //    }
+
+    @Binds
+    @Singleton
+    abstract fun bindIntraDayInfoParser(
+        intraDayInfoParser: IntraDayInfoParser
+    ): CSVParser<IntraDayInfo>
 }
