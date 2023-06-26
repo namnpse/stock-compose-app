@@ -51,7 +51,7 @@ class CompanyListViewModel @Inject constructor(
         val query = state.searchQuery.trim().lowercase()
         viewModelScope.launch {
             stockMarketRepository.getCompanyListing(getRemoteData, query)
-                .distinctUntilChanged()
+//                .distinctUntilChanged()
                 .collect { result ->
                     when (result) {
                         is Resource.Loading -> {

@@ -9,7 +9,7 @@ interface StockMarketApi {
 
     @GET("query?function=LISTING_STATUS")
     suspend fun getCompanyListing(
-        @Query("apiKey") apiKey: String = API_KEY,
+        @Query("apikey") apiKey: String = API_KEY,
     ): ResponseBody
 
     @GET("query?function=TIME_SERIES_INTRADAY&interval=60min&datatype=csv")
@@ -25,7 +25,7 @@ interface StockMarketApi {
     ): CompanyInfoDto
 
     companion object {
-        const val API_KEY = "Q63Y9NX3TUF587NF"
+        const val API_KEY = "G1USXWKX272RK4BP"
         const val BASE_URL = "https://alphavantage.co"
     }
 }

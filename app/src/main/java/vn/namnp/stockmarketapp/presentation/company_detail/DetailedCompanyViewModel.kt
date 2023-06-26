@@ -23,7 +23,7 @@ class DetailedCompanyViewModel @Inject constructor(
 
     init {
         val symbol = savedStateHandle.get<String>("symbol")
-        symbol?.let {symbol
+        symbol?.let { symbol ->
             getDetailedCompany(symbol)
         }
     }

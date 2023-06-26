@@ -15,9 +15,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import vn.namnp.stockmarketapp.presentation.destinations.DetailedCompanyScreenDestination
 
 @Composable
+@Destination(start = true)
 fun ListCompaniesScreen(
+    navigator: DestinationsNavigator,
     viewModel: CompanyListViewModel = hiltViewModel(),
 ) {
 
@@ -60,7 +65,9 @@ fun ListCompaniesScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-                                // TODO: Navigate to detail screen
+                                navigator.navigate(
+                                    DetailedCompanyScreenDestination(company.symbol)
+                                )
                             }
                             .padding(16.dp)
                     )
