@@ -13,12 +13,14 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import vn.namnp.stockmarketapp.domain.repository.StockMarketRepository
+import vn.namnp.stockmarketapp.domain.usecase.StockMarketUseCases
 import vn.namnp.stockmarketapp.util.Resource
 import javax.inject.Inject
 
 @HiltViewModel
 class CompanyListViewModel @Inject constructor(
-    private val stockMarketRepository: StockMarketRepository
+//    private val stockMarketRepository: StockMarketRepository,
+    private val stockMarketUseCases: StockMarketUseCases,
 ) : ViewModel() {
 
     var state by mutableStateOf(CompanyListState())
@@ -50,7 +52,8 @@ class CompanyListViewModel @Inject constructor(
     ) {
         val query = state.searchQuery.trim().lowercase()
         viewModelScope.launch {
-            stockMarketRepository.getCompanyListing(getRemoteData, query)
+//            stockMarketRepository.getCompanyListing(getRemoteData, query)
+            stockMarketUseCases.getListCompanyStockUseCase(getRemoteData, query)
 //                .distinctUntilChanged()
                 .collect { result ->
                     when (result) {

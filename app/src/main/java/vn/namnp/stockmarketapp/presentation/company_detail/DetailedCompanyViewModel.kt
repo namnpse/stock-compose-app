@@ -10,13 +10,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import vn.namnp.stockmarketapp.domain.repository.StockMarketRepository
+import vn.namnp.stockmarketapp.domain.usecase.StockMarketUseCases
 import vn.namnp.stockmarketapp.util.Resource
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailedCompanyViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val repository: StockMarketRepository
+//    private val repository: StockMarketRepository,
+    private val stockMarketUseCases: StockMarketUseCases,
 ) : ViewModel() {
 
     var state by mutableStateOf(CompanyInfoState())
@@ -30,8 +32,10 @@ class DetailedCompanyViewModel @Inject constructor(
 
     private fun getDetailedCompany(symbol: String) = viewModelScope.launch {
         state = state.copy(isLoading = true)
-        val companyInfoResult = async { repository.getCompanyInfo(symbol) }
-        val intraDayInfoResult = async { repository.getIntraDayInfo(symbol) }
+//        val companyInfoResult = async { repository.getCompanyInfo(symbol) }
+        val companyInfoResult = async { stockMarketUseCases.getDetailedCompanyStockUseCase(symbol) }
+//        val intraDayInfoResult = async { repository.getIntraDayInfo(symbol) }
+        val intraDayInfoResult = async { stockMarketUseCases.getIntraDayInfoUseCase(symbol) }
         when (val result = companyInfoResult.await()) {
             is Resource.Success -> {
                 state = state.copy(
