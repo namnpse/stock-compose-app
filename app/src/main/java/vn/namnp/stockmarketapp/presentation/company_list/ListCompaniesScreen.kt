@@ -20,7 +20,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import vn.namnp.stockmarketapp.presentation.destinations.DetailedCompanyScreenDestination
 
 @Composable
-@Destination(start = true)
+@Destination
 fun ListCompaniesScreen(
     navigator: DestinationsNavigator,
     viewModel: CompanyListViewModel = hiltViewModel(),
